@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/layoutItemFlights"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="7">
+
+        <TextView
+            android:id="@+id/textViewId"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="-1dp"
+            android:layout_marginStart="-1dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_gray_bg_null"
+            android:gravity="center|center_vertical"
+            android:text="Id"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewPlate"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="-1dp"
+            android:layout_marginStart="-1dp"
+            android:layout_weight="2"
+            android:background="@drawable/border_gray_bg_null"
+            android:gravity="center|center_vertical"
+            android:text="@string/main_plate"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="-1dp"
+            android:layout_marginStart="-1dp"
+            android:layout_weight="2"
+            android:background="@drawable/border_gray_bg_null"
+            android:gravity="center|center_vertical"
+            android:text="@string/main_date"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textViewHour"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="-1dp"
+            android:layout_marginStart="-1dp"
+            android:layout_weight="2"
+            android:background="@drawable/border_gray_bg_null"
+            android:gravity="center|center_vertical"
+            android:text="@string/main_hour"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
