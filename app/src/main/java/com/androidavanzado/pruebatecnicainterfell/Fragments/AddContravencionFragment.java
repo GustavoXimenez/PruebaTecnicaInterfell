@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class AddContravencionFragment extends Fragment {
 
@@ -91,7 +92,6 @@ public class AddContravencionFragment extends Fragment {
         return view;
     }
 
-
     private void initViews(){
         edtPlate = view.findViewById(R.id.editTextPlate);
         edtTime = view.findViewById(R.id.editTextTime);
@@ -124,13 +124,13 @@ public class AddContravencionFragment extends Fragment {
                                     insertContraversia();
                                 }
                             } else {
-                                Toast.makeText(context, "Puede circular sin problema", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, getResources().getString(R.string.fragment_add_alert_circular), Toast.LENGTH_LONG).show();
                             }
                         } else {
-                            Toast.makeText(context, "Puede circular sin problema", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, getResources().getString(R.string.fragment_add_alert_circular), Toast.LENGTH_LONG).show();
                         }
                     } catch (Exception e){
-                        Toast.makeText(context, "Su placa necesita terminar con número", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, getResources().getString(R.string.fragment_add_alert_no_digit), Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -172,33 +172,89 @@ public class AddContravencionFragment extends Fragment {
 
     private void insertContraversia(){
         if(myDB.insertData(plateSelected, dateSelected, hourSelected))
-            Toast.makeText(context, "se ha insertado la controversia, placa: " + edtPlate.getText().toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, getResources().getString(R.string.fragment_add_insert_data) + edtPlate.getText().toString(), Toast.LENGTH_LONG).show();
         else
-            Toast.makeText(context, "no se ha insertado la controversia de la placa: " + edtPlate.getText().toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, getResources().getString(R.string.fragment_add_no_insert_data) + edtPlate.getText().toString(), Toast.LENGTH_LONG).show();
     }
 
     private String getDayXPlate(int digit){
         String day = "";
-        switch (digit){
-            case 1:
-            case 2:
-                day = "lunes";
+        // Validamos el lenguaje del sistema para saber que dia agregar
+        String language = Locale.getDefault().getLanguage();
+        String[] languages = new String[2];
+        switch (language)
+        {
+            case "es":
+                switch (digit){
+                    case 1:
+                    case 2:
+                        day = "lunes";
+                        break;
+                    case 3:
+                    case 4:
+                        day = "martes";
+                        break;
+                    case 5:
+                    case 6:
+                        day = "miércoles";
+                        break;
+                    case 7:
+                    case 8:
+                        day = "jueves";
+                        break;
+                    case 9:
+                    case 0:
+                        day = "viernes";
+                        break;
+                }
                 break;
-            case 3:
-            case 4:
-                day = "martes";
+            case "en":
+                switch (digit){
+                    case 1:
+                    case 2:
+                        day = "monday";
+                        break;
+                    case 3:
+                    case 4:
+                        day = "tuesday";
+                        break;
+                    case 5:
+                    case 6:
+                        day = "wednesday";
+                        break;
+                    case 7:
+                    case 8:
+                        day = "thursday";
+                        break;
+                    case 9:
+                    case 0:
+                        day = "friday";
+                        break;
+                }
                 break;
-            case 5:
-            case 6:
-                day = "miércoles";
-                break;
-            case 7:
-            case 8:
-                day = "jueves";
-                break;
-            case 9:
-            case 0:
-                day = "viernes";
+            default:
+                switch (digit){
+                    case 1:
+                    case 2:
+                        day = "lunes";
+                        break;
+                    case 3:
+                    case 4:
+                        day = "martes";
+                        break;
+                    case 5:
+                    case 6:
+                        day = "miércoles";
+                        break;
+                    case 7:
+                    case 8:
+                        day = "jueves";
+                        break;
+                    case 9:
+                    case 0:
+                        day = "viernes";
+                        break;
+                }
                 break;
         }
         return day;
@@ -283,7 +339,7 @@ public class AddContravencionFragment extends Fragment {
         results.clear();
 
         if(TextUtils.isEmpty(edtPlate.getText())){
-            edtPlate.setError("El numero de placa es requerido");
+            edtPlate.setError(getResources().getString(R.string.fragment_add_plate_required));
             results.add(false);
         } else {
             edtPlate.setError(null);
@@ -291,7 +347,7 @@ public class AddContravencionFragment extends Fragment {
         }
 
         if(TextUtils.isEmpty(edtTime.getText())){
-            edtTime.setError("El día es requerido");
+            edtTime.setError(getResources().getString(R.string.fragment_add_date_required));
             results.add(false);
         } else {
             edtTime.setError(null);
@@ -299,7 +355,7 @@ public class AddContravencionFragment extends Fragment {
         }
 
         if(TextUtils.isEmpty(edtHour.getText())){
-            edtHour.setError("La hora es requerida");
+            edtHour.setError(getResources().getString(R.string.fragment_add_hour_required));
             results.add(false);
         } else {
             edtHour.setError(null);
