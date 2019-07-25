@@ -12,6 +12,16 @@
 
     <string name="fragment_list_title">Consulte contraversiones por fecha y hora</string>
 
+    <string name="fragment_add_plate_required">El numero de placa es requerido</string>
+    <string name="fragment_add_date_required">El día es requerido</string>
+    <string name="fragment_add_hour_required">La hora es requerida</string>
+
+    <string name="fragment_add_insert_data">Se ha insertado la contravención, placa: </string>
+    <string name="fragment_add_no_insert_data">No se inserto la contravención, placa: </string>
+
+    <string name="fragment_add_alert_circular">Puede circular</string>
+    <string name="fragment_add_alert_no_digit">Su placa necesita no es valida, necesita terminar con un número</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
